@@ -1,9 +1,9 @@
-import Bot from './utils/SetupBot.js';
-import getCirculars from './utils/GetCircular.js';
+import Bot from '../../utils/SetupBot.js';
+import getCirculars from '../../utils/GetCircular.js';
 import fetch from 'node-fetch';
 import cron from "node-cron";
-import fetchLatest from './utils/FetchCircular.js';
-import fetchPdf from './utils/FetchPdf.js';
+// import fetchLatest from '../../utils/FetchCircular.js';
+import fetchPdf from '../../utils/FetchPdf.js';
 
 Bot.command('circular', async (ctx) => {
     const circular =  await getCirculars(1)
@@ -36,8 +36,9 @@ Bot.command('circular', async (ctx) => {
 //   });
 
 
-Bot.launch();
+// Bot.launch();
 
+export const handler = Bot.webhookCallback('/.netlify/functions/update');
 
 // fetchLatest(10);
 
