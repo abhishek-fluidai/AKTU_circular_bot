@@ -38,7 +38,8 @@ Bot.command('circular', async (ctx) => {
 
 // Bot.launch();
 
-export const handler = Bot.webhookCallback('/.netlify/functions/update');
+// export const handler = Bot.webhookCallback('/.netlify/functions/update');
+export const handler = Bot.webhookCallback('/.netlify/functions/index')
 
 // fetchLatest(10);
 
