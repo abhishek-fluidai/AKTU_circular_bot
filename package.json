@@ -5,8 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "build": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +15,8 @@
     "node-cron": "^3.0.2",
     "node-fetch": "^3.3.0",
     "telegraf": "^4.11.2"
+  },
+  "devDependencies": {
+    "ngrok": "^4.3.3"
   }
 }
