@@ -6,23 +6,15 @@
   "type": "module",
   "scripts": {
     "start": "nodemon index.js",
-    "build": "ngrok http 3000"
+    "build": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cfworker/web": "^1.12.5",
-    "cfworker-middleware-telegraf": "^2.0.2",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.3",
     "node-cron": "^3.0.2",
     "node-fetch": "^3.3.0",
     "telegraf": "^4.11.2"
-  },
-  "devDependencies": {
-    "ngrok": "^4.3.3",
-    "node-polyfill-webpack-plugin": "^2.0.1",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
   }
 }
