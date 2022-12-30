@@ -1,16 +1,40 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
-import axios from "axios"
+import http from "http"
 // import fetch from "node-fetch"
 dotenv.config()
+const options = {
+  hostname: 'jsonplaceholder.typicode.com',
+  path: '/posts',
+  method: 'GET'
+};
+
 const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(ctx => {
   console.log("Received /start command")
   try {
-    axios.get("https://catfact.ninja/fact").then(res => res.data).then(data => {
-      console.log("Received cat fact:", data.fact)
-      return ctx.reply(data.fact)
-})
+    http.request(options, (res) => {
+      let data = ''
+
+      res.on('data', (chunk) => {
+          data += chunk;
+      });
+      
+      // Ending the response 
+      res.on('end', () => {
+          console.log('Body:', JSON.parse(data)[0].body)
+          return ctx.reply(JSON.parse(data)[0].body)
+      });
+
+         
+    }).on("error", (err) => {
+      console.log("Error: ", err)
+    }).end()
+    // axios.get("https://catfact.ninja/fact").then(res => res.data).then(data => {
+    //   console.log("Received cat fact:", data.fact)
+    //   return ctx.reply(data.fact)
+
+// })
   } catch (e) {
     console.error("error in start action:", e)
     return ctx.reply("Error occured")
