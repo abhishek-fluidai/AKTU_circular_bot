@@ -1,7 +1,6 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
 import http from "http"
-// import fetch from "node-fetch"
 dotenv.config()
 const options = {
   hostname: 'jsonplaceholder.typicode.com',
@@ -22,18 +21,14 @@ bot.start(ctx => {
       
       // Ending the response 
       res.on('end', () => {
-        ctx.reply(JSON.parse(data)[0].body)
+       return  ctx.reply(JSON.parse(data)[0].body)
       });
 
          
     }).on("error", (err) => {
       console.log("Error: ", err)
     }).end()
-    // axios.get("https://catfact.ninja/fact").then(res => res.data).then(data => {
-    //   console.log("Received cat fact:", data.fact)
-    //   return ctx.reply(data.fact)
 
-// })
   } catch (e) {
     console.error("error in start action:", e)
     return ctx.reply("Error occured")
