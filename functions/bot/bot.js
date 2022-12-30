@@ -1,8 +1,9 @@
-const { Telegraf } = require('telegraf')
-const dotenv = require("dotenv")
-dotenv.config({ path: __dirname + "/.env" })
-
-// config()
+import { Telegraf } from "telegraf"
+import dotenv from "dotenv"
+dotenv.config()
+// const { fetchLatest } = require("./utils/FetchCircular.mjs")
+// import { fetchLatest } from "./utils/FetchCircular.js"
+// const { getCircular } = require("./utils/GetCircular")
 
 
 console.log(process.env.BOT_TOKEN)
@@ -17,11 +18,10 @@ bot.start(ctx => {
     return ctx.reply("Error occured")
   }
 
-
 })
 
 // AWS event handler syntax (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html)
-exports.handler = async event => {
+export const handler = async event => {
   try {
     await bot.handleUpdate(JSON.parse(event.body))
     return { statusCode: 200, body: "" }
