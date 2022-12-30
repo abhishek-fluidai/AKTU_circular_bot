@@ -1,16 +1,18 @@
 import Bot from "./utils/SetupBot.js";
 import getCirculars from "./utils/GetCircular.js";
 import fetchPdf from "./utils/FetchPdf.js";
+import fetchLatest from "./utils/FetchCircular.js";
+import cron from "node-cron";
+import fs from "fs";
 
 Bot.command("circular", async (ctx) => {
   const circular = await getCirculars(1);
-  const { name, date, from, link } = circular[0];
-  fetchPdf(link).then((pdf) => {
+  const { name, date, from } = circular[0];
+    const pdf = fs.readFileSync("latest.pdf");
     ctx.replyWithDocument(
       { source: pdf, filename: name + ".pdf" },
       { caption: `Name: ${name} \n\nDate: ${date} \nFrom: ${from} \n` }
     );
-  });
 });
 
 
@@ -46,8 +48,10 @@ Bot.command("circular", async (ctx) => {
 //     );
 // });
 
-// cron.schedule('* 6 * * *', function() {
-//     fetchLatest(10);
-//   });
+cron.schedule('* 6 * * *', function  () {
+  fetchLatest()
+  });
 
+Bot.telegram.sendMessage(5381254341, "Bot Started");
+ 
 Bot.launch();
