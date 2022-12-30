@@ -1,5 +1,6 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
+import fs from 'fs';
 dotenv.config()
 // const { fetchLatest } = require("./utils/FetchCircular.mjs")
 // import { fetchLatest } from "./utils/FetchCircular.js"
@@ -12,7 +13,10 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(ctx => {
   console.log("Received /start command")
   try {
-    return ctx.reply("Hi")
+    fetch("https://catfact.ninja/fact").then(res => res.json()).then(data => {
+      console.log(data)
+      return ctx.reply(data.fact)
+    })
   } catch (e) {
     console.error("error in start action:", e)
     return ctx.reply("Error occured")
