@@ -5,7 +5,7 @@ import path from "path";
 const URL =  "https://erp.aktu.ac.in/Webpages/Public/Circular/frmCircularForWebsite.aspx";
 
 const file = fs.readFileSync("data.json", "utf8");
-const local_file = "./data.html";
+
 
 
 const fetchLatest = async (range = 10) => {
