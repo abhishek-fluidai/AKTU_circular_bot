@@ -13,22 +13,24 @@ Bot.command("circular", async (ctx) => {
   });
 });
 
-Bot.command("last10", async (ctx) => {
-  const circular = await getCirculars(10);
-  let index = 0;
-  circular.forEach((circular) => {
-    const { name, date, from, link } = circular;
-    fetchPdf(link).then((pdf) => {
-      ctx.replyWithDocument({
-        source: pdf,
-        filename: index + "-" + name + ".pdf",
-      },
-      { caption: `Serial No: ${index+1} \nName: ${name} \n\nDate: ${date} \nFrom: ${from} \n` })
 
-    });
-    index++;
-  });
-});
+
+// Bot.command("last10", async (ctx) => {
+//   const circular = await getCirculars(10);
+//   let index = 0;
+//   circular.forEach((circular) => {
+//     const { name, date, from, link } = circular;
+//     fetchPdf(link).then((pdf) => {
+//       ctx.replyWithDocument({
+//         source: pdf,
+//         filename: index + "-" + name + ".pdf",
+//       },
+//       { caption: `Serial No: ${index+1} \nName: ${name} \n\nDate: ${date} \nFrom: ${from} \n` })
+
+//     });
+
+//   });
+// });
 
 // Bot.command('last10', async (ctx) => {
 //     const circular =  await getCirculars(10)
