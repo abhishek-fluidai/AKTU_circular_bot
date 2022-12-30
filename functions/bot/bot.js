@@ -22,8 +22,7 @@ bot.start(ctx => {
       
       // Ending the response 
       res.on('end', () => {
-          console.log('Body:', JSON.parse(data)[0].body)
-          return ctx.reply(JSON.parse(data)[0].body)
+        ctx.reply(JSON.parse(data)[0].body)
       });
 
          
