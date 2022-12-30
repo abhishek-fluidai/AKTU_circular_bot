@@ -1,5 +1,6 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
+import fetch from "node-fetch"
 import fs from 'fs';
 dotenv.config()
 // const { fetchLatest } = require("./utils/FetchCircular.mjs")
@@ -7,7 +8,7 @@ dotenv.config()
 // const { getCircular } = require("./utils/GetCircular")
 
 
-console.log(process.env.BOT_TOKEN)
+// console.log(process.env.BOT_TOKEN)
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 bot.start(ctx => {
