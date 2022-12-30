@@ -1,14 +1,13 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
-import fetch from "node-fetch"
+import axios from "axios"
+// import fetch from "node-fetch"
 dotenv.config()
-
 const bot = new Telegraf(process.env.BOT_TOKEN)
-
 bot.start(ctx => {
   console.log("Received /start command")
   try {
-    fetch("https://catfact.ninja/fact").then(res => res.json()).then(data => {
+    axios.get("https://catfact.ninja/fact").then(res => res.data).then(data => {
       console.log("Received cat fact:", data.fact)
       return ctx.reply(data.fact)
 })
