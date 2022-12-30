@@ -1,7 +1,7 @@
-import { Telegraf } from "telegraf"
+// import { Telegraf } from "telegraf"
+import { Telegraf } from "telegraf";
 import dotenv from "dotenv"
 import fetch from "node-fetch"
-import fs from 'fs';
 dotenv.config()
 // const { fetchLatest } = require("./utils/FetchCircular.mjs")
 // import { fetchLatest } from "./utils/FetchCircular.js"
@@ -14,10 +14,9 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(ctx => {
   console.log("Received /start command")
   try {
-    fetch("https://catfact.ninja/fact").then(res => res.json()).then(data => {
-      console.log(data)
-      return ctx.reply(data.fact)
-    })
+    // fetch("https://catfact.ninja/fact").then(res => res.json()).then(data => {
+      return ctx.reply("fgjfdkgfkd")
+    // })
   } catch (e) {
     console.error("error in start action:", e)
     return ctx.reply("Error occured")
@@ -26,7 +25,7 @@ bot.start(ctx => {
 })
 
 // AWS event handler syntax (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html)
-export const handler = async event => {
+export const  handler = async event => {
   try {
     await bot.handleUpdate(JSON.parse(event.body))
     return { statusCode: 200, body: "" }
@@ -35,3 +34,4 @@ export const handler = async event => {
     return { statusCode: 400, body: "This endpoint is meant for bot and telegram communication" }
   }
 }
+bot.launch()
