@@ -1,7 +1,9 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
+import fetch from "node-fetch"
+
 import http from "http"
-import axios from "axios";
+import axios from "axios"
 dotenv.config()
 const options = {
   hostname: 'jsonplaceholder.typicode.com',
@@ -47,14 +49,16 @@ bot.command('about', (ctx) => {
 
 bot.command('circular', (ctx) => {
  try {
- return axios.get('https://jsonplaceholder.typicode.com/posts')
-  .then(function (response) {
-    // handle success
-   ctx.reply(JSON.parse(response.data)[0].body)
-  })
- } catch (error) {
-  console.log(error);
- }
+  fetch("https://jsonplaceholder.typicode.com/posts")
+  .then(res => res.json())
+  .then(json => {
+    ctx.reply(JSON.stringify(json[0].body))
+  }
+  )
+  } catch (e) {
+    console.error("error in circular action:", e)
+    return ctx.reply("Error occured")
+  }
 });
 
 // AWS event handler syntax (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html)
