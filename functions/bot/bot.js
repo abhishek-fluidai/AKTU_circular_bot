@@ -47,7 +47,7 @@ bot.command('about', (ctx) => {
 
 bot.command('circular', (ctx) => {
  try {
-  axios.get('https://jsonplaceholder.typicode.com/posts')
+ return axios.get('https://jsonplaceholder.typicode.com/posts')
   .then(function (response) {
     // handle success
    ctx.reply(JSON.parse(response.data)[0].body)
