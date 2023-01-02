@@ -36,6 +36,10 @@ bot.start(ctx => {
 
 })
 
+bot.command('about', (ctx) => {
+  ctx.reply("This bot is made by @actuallyabhi \n\n This bot is made for the students of AKTU to get the latest circulars from the official website of AKTU \n\n This bot is made using Telegraf.js and Node.js \n\n Stay tuned ")  
+});
+
 // AWS event handler syntax (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html)
 export const handler = async event => {
   try {
