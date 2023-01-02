@@ -1,12 +1,17 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
 import http from "http"
+import axios from "axios";
 dotenv.config()
 const options = {
   hostname: 'jsonplaceholder.typicode.com',
   path: '/posts',
   method: 'GET'
 };
+
+
+
+
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(ctx => {
@@ -41,7 +46,15 @@ bot.command('about', (ctx) => {
 });
 
 bot.command('circular', (ctx) => {
-  ctx.reply("This command is under development") 
+ try {
+  axios.get('https://jsonplaceholder.typicode.com/posts')
+  .then(function (response) {
+    // handle success
+   ctx.reply(JSON.parse(response.data)[0].body)
+  })
+ } catch (error) {
+  console.log(error);
+ }
 });
 
 // AWS event handler syntax (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html)
