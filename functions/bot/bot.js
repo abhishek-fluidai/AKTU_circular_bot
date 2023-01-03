@@ -1,9 +1,12 @@
 import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
-import fetch from "node-fetch"
+import https from "https"
+import { load } from "cheerio";
 
-import http from "http"
-import axios from "axios"
+
+
+
+
 dotenv.config()
 const options = {
   hostname: 'jsonplaceholder.typicode.com',
@@ -12,35 +15,9 @@ const options = {
 };
 
 
-
-
-
 const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(ctx => {
-  console.log("Received /start command")
-  try {
-    http.request(options, (res) => {
-      let data = ''
-
-      res.on('data', (chunk) => {
-          data += chunk;
-      });
-      
-      // Ending the response 
-      res.on('end', () => {
-       return  ctx.reply(JSON.parse(data)[0].body)
-      });
-
-         
-    }).on("error", (err) => {
-      console.log("Error: ", err)
-    }).end()
-
-  } catch (e) {
-    console.error("error in start action:", e)
-    return ctx.reply("Error occured")
-  }
-
+  ctx.reply("Welcome to AKTU Bot \n\n Use /help to get the list of commands")
 })
 
 bot.command('about', (ctx) => {
@@ -49,12 +26,47 @@ bot.command('about', (ctx) => {
 
 bot.command('circular', (ctx) => {
  try {
-  fetch("https://jsonplaceholder.typicode.com/posts")
-  .then(res => res.json())
-  .then(json => {
-    ctx.reply(JSON.stringify(json[0].body))
-  }
+  https
+  .get(
+    "https://erp.aktu.ac.in/Webpages/Public/Circular/frmCircularForWebsite.aspx",
+    function (resp) {
+      let data = "";
+      resp.on("data", (chunk) => {
+        data += chunk;
+      });
+
+      resp.on("end", () => {
+        const $ = load(data);
+        const table = $("table.rstu");
+        const rows = table.find("tr");
+        const final = [];
+        for (let i = 1; i <= 10; i++) {
+          const columns = $(rows[i]).find("td");
+          const rowData = [];
+          columns.each((index, column) => {
+            if (index === 4) {
+              const link = $(column).find("a");
+              rowData.push(link.attr("href"));
+              return;
+            }
+            rowData.push($(column).text().trim());
+          });
+          final.push(rowData);
+        }
+        bot.send(final, (err, data) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(data);
+          }
+        });
+      });
+    }
   )
+  .on("error", (err) => {
+    console.log("Error: " + err.message);
+  });
+
   } catch (e) {
     console.error("error in circular action:", e)
     return ctx.reply("Error occured")
