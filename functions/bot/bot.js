@@ -12,16 +12,8 @@ const options = {
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start(ctx => {
-  ctx.reply("Welcome to AKTU Bot \n\n Use /help to get the list of commands")
-})
-
-bot.command('about', (ctx) => {
-  ctx.reply("This bot is made by @actuallyabhi \n\n This bot is made for the students of AKTU to get the latest circulars from the official website of AKTU \n\n This bot is made using Telegraf.js and Node.js \n\n Stay tuned ")  
-});
-
-bot.command('circular', (ctx) => {
- try {
-  https
+  try {
+    https
   .get(
     "https://erp.aktu.ac.in/Webpages/Public/Circular/frmCircularForWebsite.aspx",
     function (resp) {
@@ -61,12 +53,24 @@ bot.command('circular', (ctx) => {
   .on("error", (err) => {
     console.log("Error: " + err.message);
   });
-
-  } catch (e) {
-    console.error("error in circular action:", e)
-    return ctx.reply("Error occured")
+  } catch (error) {
+    console.log(error)
   }
+})
+
+bot.command('about', (ctx) => {
+  ctx.reply("This bot is made by @actuallyabhi \n\n This bot is made for the students of AKTU to get the latest circulars from the official website of AKTU \n\n This bot is made using Telegraf.js and Node.js \n\n Stay tuned ")  
 });
+
+// bot.command('circular', (ctx) => {
+//  try {
+  
+
+//   } catch (e) {
+//     console.error("error in circular action:", e)
+//     return ctx.reply("Error occured")
+//   }
+// });
 
 // AWS event handler syntax (https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html)
 export const handler = async event => {
