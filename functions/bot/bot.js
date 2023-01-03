@@ -40,13 +40,7 @@ bot.start(ctx => {
           });
           final.push(rowData);
         }
-        bot.send(final, (err, data) => {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(data);
-          }
-        });
+        ctx.reply(final)
       });
     }
   )
