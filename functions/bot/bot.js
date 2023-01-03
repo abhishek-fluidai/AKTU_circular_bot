@@ -2,11 +2,6 @@ import { Telegraf } from "telegraf"
 import dotenv from "dotenv"
 import https from "https"
 import { load } from "cheerio";
-
-
-
-
-
 dotenv.config()
 const options = {
   hostname: 'jsonplaceholder.typicode.com',
