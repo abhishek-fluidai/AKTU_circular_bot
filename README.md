@@ -2,7 +2,7 @@
 > Telegram bot to scrape latest aktu circulars to channel. This bot is hosted on google sheets and uses google sheets as a database to store the scraped data.
 
 ## How to use
- Link to telegram channel: [Join now :arrow_upper_right:](https://t.me/aktucirculars)
+ Link to telegram channel: [Join now](https://t.me/aktucirculars)
 
 ## Tech Stack
 - JavaScript
@@ -16,7 +16,7 @@
 - Get the bot token
 - Create a google sheet and go to `Tools` > `Script Editor`
    - sheets structure
-   - ![sheets structure](./assets/sheets_structure.png)
+    ![sheets structure](./assets/sheets_structure.png)
 - Paste the code from `FetchFromAktu.js` and `SendToTelegram.js` in the respective files
 - Test the code
 - Create a trigger to run the script after an interval of time.
@@ -26,8 +26,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Author
   **Abhishek** 
-   ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=Social&logo=linkedin&logoColor=white)
-
+   [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=Social&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhishek-maurya-284146260/)
+    [![Twitter](https://img.shields.io/badge/twitter-%231DA1F2.svg?style=Social&logo=twitter&logoColor=white)](https://twitter.com/actuallyabhish)
+    
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
