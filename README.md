@@ -15,6 +15,8 @@
 - Create a telegram bot using [BotFather](https://t.me/BotFather)
 - Get the bot token
 - Create a google sheet and go to `Tools` > `Script Editor`
+   - sheets structure
+   - ![sheets structure](./assets/sheets_structure.png)
 - Paste the code from `FetchFromAktu.js` and `SendToTelegram.js` in the respective files
 - Test the code
 - Create a trigger to run the script after an interval of time.
