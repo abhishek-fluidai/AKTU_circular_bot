@@ -27,23 +27,26 @@ function FetchFromAKTU() {
   const third = row.getRange('C4').getValue();
   const second = row.getRange('C3').getValue();
   const first =  row.getRange('C2').getValue();
+  const prev = row.getRange('C15').getValue()
 
-  if (third != row.getRange('C17').getValue()) {
-    postMessageToTelegram(4)
-    row.getRange('C17').setValue(third)
-  }
-
-  if (second  != row.getRange('C16').getValue()) {
-    postMessageToTelegram(3);
-    row.getRange('C16').setValue(second);
-  }
-
-  if (first  != row.getRange('C15').getValue()) {
+  if (third == prev ) {
+    postMessageToTelegram(3)
     postMessageToTelegram(2)
     row.getRange('C15').setValue(first)
-  } 
-  else {
-    Logger.log("no new changes")
+    Logger.log("Sent 2 circulars")
+    return
   }
+   if (second == prev ) {
+    // postMessageToTelegram(3)
+    postMessageToTelegram(2)
+    row.getRange('C15').setValue(first)
+    Logger.log("Sent latest circular")
+    return
+  }
+
+   if (first == prev ) {
+    Logger.log("No new circulars")
+  }
+
 
 }
